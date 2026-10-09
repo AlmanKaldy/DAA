@@ -12,7 +12,11 @@ class Solution {
             }
             tail = tail.next;
         }
-        tail.next = (list1 != null) ? list1 : list2;
+        if (list1 != null) {
+            tail.next = list1;
+        } else {
+            tail.next = list2;
+        }
         return dummy.next;
     }
 }
