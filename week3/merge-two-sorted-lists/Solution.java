@@ -1,44 +1,41 @@
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        // Frequency Count Method: one statement/condition = 1 unit of time.
-        // n and m are input lengths; k is the number of loop iterations.
+        // n = first list size, m = second list size
+        // k = how many times the loop runs
         ListNode dummy = new ListNode(0); // 1 unit of time
         ListNode tail = dummy; // 1 unit of time
 
         while (list1 != null && list2 != null) { // k + 1 units of time
             if (list1.val <= list2.val) { // k units of time
-                tail.next = list1; // 1 unit each time this branch runs
-                list1 = list1.next; // 1 unit each time this branch runs
+                tail.next = list1; // 1 unit when used
+                list1 = list1.next; // 1 unit when used
             } else {
-                tail.next = list2; // 1 unit each time this branch runs
-                list2 = list2.next; // 1 unit each time this branch runs
+                tail.next = list2; // 1 unit when used
+                list2 = list2.next; // 1 unit when used
             }
-            // Only one branch runs, so branch statements total 2k units.
+            // if OR else runs, so together these lines take 2k units
             tail = tail.next; // k units of time
         }
         if (list1 != null) { // 1 unit of time
-            tail.next = list1; // 1 unit if selected
+            tail.next = list1; // 1 unit when used
         } else {
-            tail.next = list2; // 1 unit if selected
+            tail.next = list2; // 1 unit when used
         }
         return dummy.next; // 1 unit of time
     }
 }
 
-// Time complexity:
-// f(k) = 1 + 1 + (k + 1) + k + 2k + k + 1 + 1 + 1
+// Frequency count method
+// f(k) = 1 + 1 + k + 1 + k + 2k + k + 1 + 1 + 1
 // f(k) = 5k + 6
-// Each iteration takes one node. Worst case: k = n + m - 1,
-// when both lists are nonempty and stay interleaved until the end.
-// f(n, m) = 5(n + m - 1) + 6 = 5n + 5m + 1
-// Time complexity = O(n + m).
-// Best case: one input is empty, k = 0, f = 6, O(1).
+// Worst case: k = n + m - 1
+// f(n,m) = 5n + 5m + 1 -> O(n + m)
+// We take one node each time. When one list ends, we attach the rest.
+// Best case: one list is empty -> O(1)
 //
-// Space complexity (logical storage units, not bytes):
-// Input nodes: n + m (each node has constant size).
-// Dummy node: 1.
-// References list1, list2, dummy, tail: 4.
-// S(n, m) = n + m + 1 + 4 = n + m + 5.
-// Total space including inputs = O(n + m).
-// Extra space only = 1 + 4 = 5 = O(1).
-// Moving references does not copy nodes. The result reuses input nodes.
+// Space complexity (simple count, not bytes)
+// input nodes = n + m
+// new dummy node = 1
+// list1, list2, dummy, tail references = 4
+// S(n,m) = n + m + 5 -> O(n + m) including input
+// Extra space = 5 -> O(1), because we reuse the old nodes.
