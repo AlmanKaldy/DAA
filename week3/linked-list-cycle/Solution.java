@@ -36,9 +36,8 @@ class Solution {
 // input nodes = n
 // visited holds up to n references
 // head, visited, current, i = 4
-// S(n) = n + n + 4 = 2n + 4 -> O(n) including input
-// Extra space = n + 4 -> O(n)
+// S(n) = n + n + 4 = 2n + 4 -> O(n)
 // ArrayList can have unused slots, but space is still O(n).
 //
 // Improvement: use two pointers, one moves 1 step, the other 2.
-// This gives O(n) time and O(1) extra space.
+// This gives O(n) time. Total space is still O(n) including the input.
