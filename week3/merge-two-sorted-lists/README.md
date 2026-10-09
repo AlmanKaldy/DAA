@@ -1,48 +1,58 @@
-# Merge Two Sorted Lists
+# Assignment: Solve and Analyze
 
-## 1. Problem
+[Merge Two Sorted Lists - LeetCode](https://leetcode.com/problems/merge-two-sorted-lists/description/)
 
-Two singly linked lists are already sorted in ascending order, allowing equal values. Combine their existing nodes into one sorted list and return its first node.
+## Objective
 
-Source: https://leetcode.com/problems/merge-two-sorted-lists/
+The goal of this assignment is not only to solve the problems, but to **understand and analyze your own solution**.
 
-## 2. Approach
+For each problem:
 
-Compare the first remaining node of each list. Attach the smaller one to the result, advance only that input pointer, and move the result's tail to the attached node. On equal values, choose list1.
+1. Write your own solution.
+2. Explain how your algorithm works.
+3. Define the **time complexity**.
+4. Explain **why** your solution has this complexity.
+5. If you find a more efficient solution, briefly explain what can be improved.
 
-A dummy node gives the result an initial tail, so the first attachment needs no special case. The dummy is not part of the returned list. When an input runs out, attach the other list's whole remaining chain: it is already sorted.
+**Rule of thumb: Better your own brute-force solution than a borrowed optimal solution. Analysis is key.**
 
-Before each comparison, the selected prefix is sorted. The smallest remaining value must be at one of the two input heads because both inputs are sorted. Therefore, selecting the smaller head preserves sorted order. Each step consumes one node, so the loop terminates.
+## README.md Report
 
-### Written trace
+Each task must have its **own** **README.md** **report**.
 
-Input A: [1, 2, 4], input B: [1, 3, 4]. The selected prefix below ends at tail; its temporary next link may still point into an input until a later attachment.
+Your report should contain:
 
-| Step | A head | B head | Action | Selected prefix |
-| --- | --- | --- | --- | --- |
-| 1 | 1 | 1 | Take A; advance A | [1] |
-| 2 | 2 | 1 | Take B; advance B | [1, 1] |
-| 3 | 2 | 3 | Take A; advance A | [1, 1, 2] |
-| 4 | 4 | 3 | Take B; advance B | [1, 1, 2, 3] |
-| 5 | 4 | 4 | Take A; A becomes null | [1, 1, 2, 3, 4] |
-| Finish | null | 4 | Attach remaining B | [1, 1, 2, 3, 4, 4] |
+### 1. Problem
 
-If both inputs are empty, return null. If one is empty, return the other chain directly. This solution changes next links in the original lists.
+Briefly describe the problem in your own words.
 
-## 3. Time Complexity
+### 2. Approach
 
-**Worst-case time complexity: O(n + m)**, where n and m are the input lengths.
+Explain how your solution works.
 
-Each loop iteration consumes exactly one node and performs constant work. There are at most n + m - 1 comparisons when both lists are nonempty. Attaching the remaining chain takes O(1), without traversing it. Interleaved input values require a linear number of comparisons. If one input starts empty, this implementation takes O(1).
+Do not copy the problem description or another solution.
 
-## 4. Space Complexity
+Please, provide written tracing of your approach with examples: visualize/describe iterations.
 
-**Auxiliary space: O(1).** Only one dummy node and a fixed number of references are used. Existing input nodes form the output; no separate collection or recursion stack grows with the input.
+### 3. Time Complexity
 
-## 5. Reflection / Improvement
+State the time complexity of your solution.
 
-The iterative merge already achieves optimal worst-case linear time for ordinary linked lists and constant auxiliary space. Collecting values and sorting them would take O((n + m) log(n + m)) time and extra storage. A recursive merge is shorter but adds up to O(n + m) stack space. To preserve the inputs, new output nodes could be allocated, increasing output storage to O(n + m).
+Then explain **why**.
 
-## Validation
+### 5. Reflection / Improvement
 
-Test.java checks empty inputs, the standard example, duplicates, negative values, and unequal lengths. It also verifies that the result contains the original nodes in the expected order.
+Answer briefly:
+
+- Is there a more efficient approach?
+- What would you need to change?
+- What complexity could the improved solution achieve?
+
+You do **not** have to implement the improved solution unless you want to.
+
+## Before submitting
+
+- Your code works.
+- Time complexity is stated and explained.
+- Space complexity is stated and explained.
+- The work is your own and you understand the submitted solution.
