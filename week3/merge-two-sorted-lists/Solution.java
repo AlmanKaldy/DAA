@@ -37,5 +37,4 @@ class Solution {
 // input nodes = n + m
 // new dummy node = 1
 // list1, list2, dummy, tail references = 4
-// S(n,m) = n + m + 5 -> O(n + m) including input
-// Extra space = 5 -> O(1), because we reuse the old nodes.
+// S(n,m) = n + m + 5 -> O(n + m)
